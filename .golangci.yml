@@ -8,6 +8,15 @@ linters-settings:
   funlen:
     lines: 150
     statements: 80
+  depguard:
+    rules:
+      main:
+        allow:
+          - github.com/stretchr/testify/require
+          - strconv
+          - testing
+          - math/rand
+          - sync
 
 issues:
   exclude-rules:
