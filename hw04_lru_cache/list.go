@@ -81,20 +81,21 @@ func (l *list) Remove(i *ListItem) {
 }
 
 func (l *list) MoveToFront(i *ListItem) {
-	if i.Prev != nil {
-		i.Prev.Next = i.Next
-
-		if i.Next != nil {
-			i.Next.Prev = i.Prev
-		} else {
-			l.last = i.Prev
-		}
-
-		i.Prev = nil
-		l.first.Prev = i
-		i.Next = l.first
-		l.first = i
+	if i.Prev == nil {
+		return
 	}
+
+	i.Prev.Next = i.Next
+	if i.Next != nil {
+		i.Next.Prev = i.Prev
+	} else {
+		l.last = i.Prev
+	}
+
+	i.Prev = nil
+	l.first.Prev = i
+	i.Next = l.first
+	l.first = i
 }
 
 func NewList() List {
